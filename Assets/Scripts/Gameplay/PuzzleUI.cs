@@ -4,6 +4,8 @@ public class PuzzleUI : MonoBehaviour
 {
     public GameObject panelRoot;
     public PuzzlePiece[] pieces;
+    public GameObject carriedRocketVisual;
+    public GameObject arrow;
 
     int placedCount;
 
@@ -26,7 +28,11 @@ public class PuzzleUI : MonoBehaviour
     {
         placedCount++;
         if (placedCount >= pieces.Length)
+        {
+            if (carriedRocketVisual != null) carriedRocketVisual.SetActive(true);
+            if (arrow != null) arrow.SetActive(true);
             Invoke(nameof(Close), 0.6f);
+        }
     }
 
     void Close()
