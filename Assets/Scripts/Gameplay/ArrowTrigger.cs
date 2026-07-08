@@ -5,9 +5,7 @@ public class ArrowTrigger : MonoBehaviour
 {
     public GameObject carriedRocketVisual;
     public GameObject placedRocket;
-    public Vector3 flyAwayOffset = new Vector3(12f, 12f, 0f);
     public float delayBeforeLaunch = 2f;
-    public float flyDuration = 1.5f;
 
     bool used;
 
@@ -26,9 +24,6 @@ public class ArrowTrigger : MonoBehaviour
         yield return new WaitForSeconds(delayBeforeLaunch);
 
         FindFirstObjectByType<WeatherController>()?.EndStorm();
-
-        var block = placedRocket.GetComponent<PlaceholderBlock>();
-        Vector3 target = placedRocket.transform.position + flyAwayOffset;
-        yield return StartCoroutine(block.MoveRoutine(target, flyDuration));
+        placedRocket.GetComponent<RocketFlight>().Launch();
     }
 }
