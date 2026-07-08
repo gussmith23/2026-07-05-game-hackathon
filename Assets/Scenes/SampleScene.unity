@@ -173,6 +173,8 @@ MonoBehaviour:
   - {fileID: 2106789083}
   - {fileID: 2022289626}
   stormDirector: {fileID: 1965728901}
+  stormEnterTimeline: {fileID: 11400000, guid: abddf03198975ca4ab7e0af2bc1a5113, type: 2}
+  stormExitTimeline: {fileID: 11400000, guid: b9f68ce97fc806a48837745f62e2344b, type: 2}
   rain: {fileID: 1573587212}
 --- !u!4 &65758786
 Transform:
@@ -6818,7 +6820,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1965728900}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: abddf03198975ca4ab7e0af2bc1a5113, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: b9f68ce97fc806a48837745f62e2344b, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -6851,6 +6853,26 @@ PlayableDirector:
   - key: {fileID: 1755813862487951886, guid: abddf03198975ca4ab7e0af2bc1a5113, type: 2}
     value: {fileID: 1843811245}
   - key: {fileID: -6677248384621991455, guid: abddf03198975ca4ab7e0af2bc1a5113, type: 2}
+    value: {fileID: 1573587214}
+  - key: {fileID: 2743474350051910053, guid: b9f68ce97fc806a48837745f62e2344b, type: 2}
+    value: {fileID: 847355572}
+  - key: {fileID: 2038020299525143425, guid: b9f68ce97fc806a48837745f62e2344b, type: 2}
+    value: {fileID: 1128093023}
+  - key: {fileID: -6876561580433108000, guid: b9f68ce97fc806a48837745f62e2344b, type: 2}
+    value: {fileID: 670504668}
+  - key: {fileID: -3820758026261163639, guid: b9f68ce97fc806a48837745f62e2344b, type: 2}
+    value: {fileID: 1904983062}
+  - key: {fileID: 4867198257741232024, guid: b9f68ce97fc806a48837745f62e2344b, type: 2}
+    value: {fileID: 269243697}
+  - key: {fileID: -7592366341240041984, guid: b9f68ce97fc806a48837745f62e2344b, type: 2}
+    value: {fileID: 728639798}
+  - key: {fileID: 6429808593712471684, guid: b9f68ce97fc806a48837745f62e2344b, type: 2}
+    value: {fileID: 2106789084}
+  - key: {fileID: -602266354879240734, guid: b9f68ce97fc806a48837745f62e2344b, type: 2}
+    value: {fileID: 2022289627}
+  - key: {fileID: 1755813862487951886, guid: b9f68ce97fc806a48837745f62e2344b, type: 2}
+    value: {fileID: 1843811245}
+  - key: {fileID: -6677248384621991455, guid: b9f68ce97fc806a48837745f62e2344b, type: 2}
     value: {fileID: 1573587214}
   m_ExposedReferences:
     m_References:
