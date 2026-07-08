@@ -1,0 +1,3 @@
+[submodule "Assets/ThirdParty/unity-weather"]
+	path = Assets/ThirdParty/unity-weather
+	url = https://github.com/amyjzhu/unity-weather.git
