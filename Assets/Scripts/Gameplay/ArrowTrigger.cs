@@ -25,7 +25,7 @@ public class ArrowTrigger : MonoBehaviour
 
         yield return new WaitForSeconds(delayBeforeLaunch);
 
-        FindFirstObjectByType<WeatherExit>()?.TriggerClear();
+        FindFirstObjectByType<WeatherController>()?.EndStorm();
 
         var block = placedRocket.GetComponent<PlaceholderBlock>();
         Vector3 target = placedRocket.transform.position + flyAwayOffset;
