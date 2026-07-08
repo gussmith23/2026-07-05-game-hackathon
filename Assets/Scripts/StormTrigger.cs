@@ -4,9 +4,9 @@ using UnityEngine.InputSystem;
 #endif
 
 /// <summary>
-/// Dev trigger: an on-screen IMGUI button (no Canvas/EventSystem needed) plus the Space key,
-/// both calling WeatherController.StartStorm(). Replace with your own game logic / UI Button
-/// (wire its OnClick to StartStorm) when ready.
+/// Dev trigger: on-screen IMGUI buttons (no Canvas/EventSystem needed) plus Space/Backspace keys,
+/// calling WeatherController.StartStorm()/EndStorm(). Replace with your own game logic / UI Buttons
+/// (wire OnClick to StartStorm/EndStorm) when ready.
 /// </summary>
 public class StormTrigger : MonoBehaviour
 {
@@ -21,10 +21,14 @@ public class StormTrigger : MonoBehaviour
     {
 #if ENABLE_INPUT_SYSTEM
         if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
-            Fire();
+            FireStart();
+        if (Keyboard.current != null && Keyboard.current.backspaceKey.wasPressedThisFrame)
+            FireEnd();
 #else
         if (Input.GetKeyDown(KeyCode.Space))
-            Fire();
+            FireStart();
+        if (Input.GetKeyDown(KeyCode.Backspace))
+            FireEnd();
 #endif
     }
 
@@ -32,13 +36,23 @@ public class StormTrigger : MonoBehaviour
     {
         GUI.skin.button.fontSize = 20;
         if (GUI.Button(new Rect(20, 20, 220, 60), "Start Storm  (Space)"))
-            Fire();
+            FireStart();
+        if (GUI.Button(new Rect(20, 90, 220, 60), "End Storm  (Backspace)"))
+            FireEnd();
     }
 
-    private void Fire()
+    private void FireStart()
     {
         if (weather != null)
             weather.StartStorm();
+        else
+            Debug.LogWarning("[StormTrigger] No WeatherController assigned.", this);
+    }
+
+    private void FireEnd()
+    {
+        if (weather != null)
+            weather.EndStorm();
         else
             Debug.LogWarning("[StormTrigger] No WeatherController assigned.", this);
     }
