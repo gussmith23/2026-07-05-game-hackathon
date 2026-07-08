@@ -10,5 +10,6 @@ public class PackagePickup : MonoBehaviour
 
         carrier.Pickup();
         gameObject.SetActive(false);
+        FindFirstObjectByType<WeatherController>()?.StartStorm();
     }
 }
