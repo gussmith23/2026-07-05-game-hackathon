@@ -8,6 +8,16 @@ public class PackagePickup : MonoBehaviour
     // should point at the actual visible package.
     public GameObject packageRoot;
 
+    // Keep the trigger upright regardless of the package's own tumble: a BoxCollider2D's
+    // effective footprint is derived from its full 3D world transform, so if the parent
+    // (rotated freely by PackageThrow's physics) tips onto its side, the collider's world
+    // shape can shrink to near nothing -- decoupling rotation here keeps pickup reliable
+    // no matter how the package lands.
+    void LateUpdate()
+    {
+        transform.rotation = Quaternion.identity;
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;

@@ -42,6 +42,7 @@ public class RoofDeliverySequence : MonoBehaviour
 
         var packageThrow = package.GetComponent<PackageThrow>();
         Vector3 throwOrigin = truckStopPos + new Vector3(0f, throwHeightOffset, 0f);
+        package.SetActive(true);
         packageThrow.Throw(throwOrigin);
         yield return new WaitForSeconds(throwSettleDuration);
 
