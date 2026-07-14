@@ -9,7 +9,8 @@ public class RoofDeliverySequence : MonoBehaviour
     public Vector3 packageRestPosition;
     public float delayBeforeDelivery = 2f;
     public float truckTravelDuration = 2f;
-    public float packageDropDuration = 1.2f;
+    public float throwHeightOffset = 1.5f;
+    public float throwSettleDuration = 1.5f;
 
     bool hasTriggered;
 
@@ -29,14 +30,20 @@ public class RoofDeliverySequence : MonoBehaviour
     {
         yield return new WaitForSeconds(delayBeforeDelivery);
 
+        // Facing whichever way it exited after the intro, so it drives in nose-first
+        // for this second appearance instead of arriving in reverse.
+        truck.transform.Rotate(0f, 180f, 0f);
+
         var truckBlock = truck.GetComponent<PlaceholderBlock>();
         Vector3 truckRestPos = truck.transform.position;
         Vector3 truckStopPos = new Vector3(packageRestPosition.x, truckRestPos.y, truckRestPos.z);
 
         yield return StartCoroutine(truckBlock.MoveRoutine(truckStopPos, truckTravelDuration));
 
-        var packageBlock = package.GetComponent<PlaceholderBlock>();
-        yield return StartCoroutine(packageBlock.MoveRoutine(packageRestPosition, packageDropDuration));
+        var packageThrow = package.GetComponent<PackageThrow>();
+        Vector3 throwOrigin = truckStopPos + new Vector3(0f, throwHeightOffset, 0f);
+        packageThrow.Throw(throwOrigin);
+        yield return new WaitForSeconds(throwSettleDuration);
 
         yield return StartCoroutine(truckBlock.MoveRoutine(truckRestPos, truckTravelDuration));
     }

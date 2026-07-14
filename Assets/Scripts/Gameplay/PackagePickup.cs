@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class PackagePickup : MonoBehaviour
 {
+    // The object to hide on pickup. Left unset, defaults to this GameObject -- but the
+    // trigger collider may live on a child (2D colliders can't share a GameObject with a
+    // 3D Rigidbody, needed on the package root for its physics throw), in which case this
+    // should point at the actual visible package.
+    public GameObject packageRoot;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
@@ -9,7 +15,7 @@ public class PackagePickup : MonoBehaviour
         if (carrier == null) return;
 
         carrier.Pickup();
-        gameObject.SetActive(false);
+        (packageRoot != null ? packageRoot : gameObject).SetActive(false);
         FindFirstObjectByType<WeatherController>()?.StartStorm();
     }
 }
